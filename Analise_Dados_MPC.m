@@ -1,5 +1,4 @@
-%% Script de Análise de Dados e Métricas - MPC (CORRIGIDO)
-clear; clc; close all;
+%% Script de Análise de Dados e Métricas - MPC
 
 %% 1. Carregar Dados do Caso NOMINAL
 if isfile('Dados_MPC_Nominal.mat')
@@ -12,7 +11,7 @@ if isfile('Dados_MPC_Nominal.mat')
     
     % Extração do CONTROLE (Índice 2)
     signal_u = out.logsout.get(2).Values;
-    t_u_nom = signal_u.Time;       % Tempo próprio do controle (Aqui estava o erro!)
+    t_u_nom = signal_u.Time;       % Tempo próprio do controle 
     u_nom   = signal_u.Data;       % Dados do controle
 else
     error('Arquivo Dados_MPC_Nominal.mat não encontrado!');
@@ -49,7 +48,7 @@ legend('Nominal', 'Robusto (Incerteza 40%)', 'Referência', 'Location', 'best');
 grid on;
 set(gcf, 'Color', 'w'); 
 
-%% 4. Gerar Gráfico Comparativo: ESFORÇO DE CONTROLE
+%% 4. Gerar Gráfico Comparativo:
 figure(2); clf;
 % Agora usamos o tempo correto (t_u_nom) para o controle
 plot(t_u_nom, u_nom, 'b', 'LineWidth', 1.5); hold on;

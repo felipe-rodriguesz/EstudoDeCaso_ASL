@@ -1,4 +1,3 @@
-clear all; clc; close all;
 %% 1. Definição do Modelo (Matrizes Numéricas do CTMS)
 % Fonte: https://ctms.engin.umich.edu/CTMS/index.php?example=AircraftPitch&section=SystemModeling
 % Substituímos as equações físicas pelos valores exatos do tutorial
@@ -58,7 +57,6 @@ exportgraphics(gcf, 'rootlocus.png', 'Resolution', 300);
 figure(3); clf;
 h = bodeplot(sys_aviao);
 
-% Forçar títulos em português manualmente
 opts = getoptions(h);
 opts.Title.String = 'Diagrama de Bode';
 opts.XLabel.String = 'Frequência'; 
@@ -67,3 +65,8 @@ setoptions(h, opts);
 
 grid on;
 exportgraphics(gcf, 'bode.png', 'Resolution', 300);
+
+%% --- CARREGAR CONTROLADOR MPC ---
+plant_C = sys_aviao; 
+run('mpc1.m'); 
+disp('Controlador MPC carregado a partir do arquivo externo!');
